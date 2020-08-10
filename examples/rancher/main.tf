@@ -11,7 +11,7 @@ provider "aws" {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "2.17.0"
+  version = "2.44.0"
 
   name = "example"
   cidr = "10.105.0.0/16"
@@ -100,6 +100,7 @@ module "k3s_rancher" {
   rancher_password             = "u7qmyhm3wbgujjuijs3rqfpm2e"
   install_rancher              = true
   install_certmanager          = true
+  certmanager_version          = "0.16.1"
   install_nginx_ingress        = true
   k3s_deploy_traefik           = false
   private_subnets              = module.vpc.private_subnets
