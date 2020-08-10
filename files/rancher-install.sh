@@ -1,11 +1,11 @@
 #!/bin/bash
 %{ if install_certmanager }
 kubectl create namespace cert-manager
-kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true
+# kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true
 sleep 5
 kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v${certmanager_version}/cert-manager.yaml
 
-until [ "$(kubectl get pods --namespace cert-manager |grep Running|wc -l)" = "2" ]; do
+until [ "$(kubectl get pods --namespace cert-manager |grep Running|wc -l)" = "3" ]; do
   sleep 2
 done
 
