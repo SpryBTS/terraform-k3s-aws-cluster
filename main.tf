@@ -26,6 +26,7 @@ locals {
   agent_node_count            = var.agent_node_count
   ssh_keys                    = var.ssh_keys
   deploy_rds                  = var.k3s_storage_endpoint != "sqlite" ? 1 : 0
+  db_engine_version           = var.db_engine_version
   db_instance_type            = var.db_instance_type
   db_user                     = var.db_user
   db_pass                     = var.db_pass
