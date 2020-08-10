@@ -166,6 +166,12 @@ variable "db_instance_type" {
   default = "db.r5.large"
 }
 
+variable "db_engine_version" {
+  default     = "10.11"
+  type        = string
+  description = "Version of db engine to create in RDS"
+}
+
 variable "db_name" {
   default     = null
   type        = string
