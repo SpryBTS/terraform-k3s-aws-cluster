@@ -186,6 +186,8 @@ resource "aws_autoscaling_group" "k3s_server" {
   vpc_zone_identifier = local.private_subnets
 
   target_group_arns = [
+    aws_lb_target_group.agent-80.0.arn,
+    aws_lb_target_group.agent-443.0.arn,
     aws_lb_target_group.server-6443.arn
   ]
 
