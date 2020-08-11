@@ -66,6 +66,24 @@ resource "aws_security_group_rule" "self_k3s_server" {
   security_group_id = aws_security_group.self.id
 }
 
+resource "aws_security_group_rule" "self_k3s_server_flannel" {
+  type              = "ingress"
+  from_port         = 8472
+  to_port           = 8472
+  protocol          = "UDP"
+  cidr_blocks       = local.private_subnets_cidr_blocks
+  security_group_id = aws_security_group.self.id
+}
+
+resource "aws_security_group_rule" "self_k3s_server_metrics" {
+  type              = "ingress"
+  from_port         = 10250
+  to_port           = 10250
+  protocol          = "TCP"
+  cidr_blocks       = local.private_subnets_cidr_blocks
+  security_group_id = aws_security_group.self.id
+}
+
 resource "aws_security_group" "database" {
   name   = "${local.name}-database"
   vpc_id = data.aws_vpc.default.id
