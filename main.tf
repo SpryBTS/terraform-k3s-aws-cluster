@@ -14,7 +14,7 @@ provider "aws" {
 locals {
   name                        = var.name
   install_k3s_version         = var.install_k3s_version
-  k3s_cluster_secret          = var.k3s_cluster_secret != null ? var.k3s_cluster_secret : random_password.k3s_cluster_secret.result
+  k3s_token                   = var.k3s_token != null ? var.k3s_token : random_password.k3s_token.result
   server_instance_type        = var.server_instance_type
   agent_instance_type         = var.agent_instance_type
   agent_image_id              = var.agent_image_id != null ? var.agent_image_id : data.aws_ami.ubuntu.id
@@ -55,7 +55,7 @@ locals {
   rancher_password            = var.rancher_password
 }
 
-resource "random_password" "k3s_cluster_secret" {
+resource "random_password" "k3s_token" {
   length  = 30
   special = false
 }

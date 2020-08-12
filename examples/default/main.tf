@@ -110,7 +110,7 @@ module "k3s_rancher" {
   public_subnets               = module.vpc.public_subnets
   ssh_keys                     = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5O7k6gRYCU7YPkCH6dyXVW10izMAkDAQtQxNxdRE22 drpebcak"]
   name                         = "example"
-  k3s_cluster_secret           = "secretvaluechangeme"
+  k3s_token                    = "secretvaluechangeme"
   domain                       = "eng.rancher.space"
   aws_azs                      = ["us-west-2a", "us-west-2b", "us-west-2c"]
   k3s_storage_endpoint         = "postgres"

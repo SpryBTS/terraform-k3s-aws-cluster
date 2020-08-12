@@ -138,7 +138,7 @@ variable "install_k3s_version" {
   description = "Version of K3S to install"
 }
 
-variable "k3s_cluster_secret" {
+variable "k3s_token" {
   default     = null
   type        = string
   description = "Override to set k3s cluster registration secret"
