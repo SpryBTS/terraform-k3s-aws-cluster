@@ -22,6 +22,7 @@ resource "aws_lb_target_group" "server-6443" {
   name     = substr("${local.name}-6443-${random_pet.lb.id}", 0, 24)
   port     = 6443
   protocol = "TCP"
+  target_type = "ip"
   vpc_id   = data.aws_vpc.default.id
 }
 
