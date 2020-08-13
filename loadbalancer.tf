@@ -1,4 +1,6 @@
-resource "random_pet" "lb" {}
+resource "random_pet" "lb" {
+    length = 1
+}
 
 resource "aws_lb" "server-lb" {
   name               = substr("${local.name}-int-${random_pet.lb.id}", 0, 24)
