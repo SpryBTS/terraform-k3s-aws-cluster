@@ -70,6 +70,7 @@ resource "aws_lb_target_group" "agent-443" {
   name     = substr("${local.name}-443-${random_pet.lb.id}", 0, 24)
   port     = 443
   protocol = "TCP"
+  target_type = "ip"
   vpc_id   = data.aws_vpc.default.id
 
   health_check {
@@ -93,6 +94,7 @@ resource "aws_lb_target_group" "agent-80" {
   name     = substr("${local.name}-80-${random_pet.lb.id}", 0, 24)
   port     = 80
   protocol = "TCP"
+  target_type = "ip"
   vpc_id   = data.aws_vpc.default.id
 
   health_check {
