@@ -242,7 +242,7 @@ variable "registration_command" {
   description = "Registration command to import cluster into Rancher. Should not be used when installing Rancher in this same cluster"
 }
 
-variable "k3s_storage_endpoint" {
+variable "k3s_datastore_endpoint" {
   default     = "sqlite"
   type        = string
   description = "Storage Backend for K3S cluster to use. Valid options are 'sqlite' or 'postgres'"
