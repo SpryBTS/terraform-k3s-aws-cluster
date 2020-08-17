@@ -42,6 +42,7 @@ locals {
   certmanager_version         = var.certmanager_version
   rancher_version             = var.rancher_version
   letsencrypt_email           = var.letsencrypt_email
+  letsencrypt_environment     = var.letsencrypt_environment == "production" ? var.letsencrypt_environment : "staging"
   domain                      = var.domain
   r53_domain                  = length(var.r53_domain) > 0 ? var.r53_domain : local.domain
   private_subnets_cidr_blocks = var.private_subnets_cidr_blocks

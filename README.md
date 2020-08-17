@@ -28,13 +28,14 @@ This module supports creating a k3s cluster with a postgres backend in AWS. It a
 | install\_k3s\_version | Version of K3S to install | string | `"0.9.1"` | no |
 | install\_nginx\_ingress | Boolean that defines whether or not to install nginx-ingress | bool | `"false"` | no |
 | install\_rancher | Boolean that defines whether or not to install Rancher | bool | `"false"` | no |
-| k3s\_cluster\_secret | Override to set k3s cluster registration secret | string | `"null"` | no |
+| k3s\_token | Override to set k3s cluster registration secret | string | `"null"` | no |
 | k3s\_deploy\_traefik | Configures whether to deploy traefik ingress or not | bool | `"true"` | no |
 | k3s\_disable\_agent | Whether to run the k3s agent on the same host as the k3s server | bool | `"false"` | no |
 | k3s\_storage\_cafile | Location to download RDS CA Bundle | string | `"/srv/rds-combined-ca-bundle.pem"` | no |
-| k3s\_storage\_endpoint | Storage Backend for K3S cluster to use. Valid options are 'sqlite' or 'postgres' | string | `"sqlite"` | no |
+| k3s\_datastore\_endpoint | Storage Backend for K3S cluster to use. Valid options are 'sqlite' or 'postgres' | string | `"sqlite"` | no |
 | k3s\_tls\_san | Sets k3s tls-san flag to this value instead of the default load balancer | string | `"null"` | no |
 | letsencrypt\_email | LetsEncrypt email address to use | string | `"none@none.com"` | no |
+| letsencrypt\_environment | LetsEncrypt environment to use | string | `"production"` | no |
 | name | Name for deployment | string | `"rancher-demo"` | no |
 | private\_subnets | List of private subnet ids. | list | `[]` | no |
 | private\_subnets\_cidr\_blocks | List of cidr_blocks of private subnets | list | `[]` | no |

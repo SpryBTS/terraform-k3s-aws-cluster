@@ -46,6 +46,12 @@ variable "letsencrypt_email" {
   description = "LetsEncrypt email address to use"
 }
 
+variable "letsencrypt_environment" {
+  type        = string
+  default     = "production"
+  description = "LetsEncrypt environment to use. production | staging"
+}
+
 variable "domain" {
   type    = string
   default = "eng.rancher.space"

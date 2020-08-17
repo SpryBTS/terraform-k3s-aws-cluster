@@ -32,6 +32,7 @@ spec:
         source: letsEncrypt
     letsEncrypt:
       email: ${letsencrypt_email}
+      environment: ${letsencrypt_environment}
 EOF
 %{ endif }
 %{ endif }
