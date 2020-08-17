@@ -1,6 +1,21 @@
 terraform {
   required_providers {
-    rancher2 = ">= 1.6.0"
+    rancher2 = {
+      source  = "terraform-providers/rancher2"
+      version = ">= 1.6.0"
+    }
+    aws = {
+      source = "hashicorp/aws"
+    }
+    null = {
+      source = "hashicorp/null"
+    }
+    random = {
+      source = "hashicorp/random"
+    }
+    template = {
+      source = "hashicorp/template"
+    }
   }
 }
 
