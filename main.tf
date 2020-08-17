@@ -66,6 +66,7 @@ locals {
   install_certmanager         = var.install_certmanager
   install_rancher             = var.install_rancher
   install_nginx_ingress       = var.install_nginx_ingress
+  ingress_check_path          = var.install_nginx_ingress ? "/healthz" : "/ping"
   create_external_nlb         = var.create_external_nlb ? 1 : 0
   registration_command        = var.registration_command
   rancher_password            = var.rancher_password

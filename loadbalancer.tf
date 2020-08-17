@@ -76,7 +76,7 @@ resource "aws_lb_target_group" "agent-443" {
   health_check {
     interval            = 10
     timeout             = 6
-    path                = "/healthz"
+    path                = local.ingress_check_path
     port                = 80
     protocol            = "HTTP"
     healthy_threshold   = 3
@@ -100,7 +100,7 @@ resource "aws_lb_target_group" "agent-80" {
   health_check {
     interval            = 10
     timeout             = 6
-    path                = "/healthz"
+    path                = local.ingress_check_path
     port                = 80
     protocol            = "HTTP"
     healthy_threshold   = 3
