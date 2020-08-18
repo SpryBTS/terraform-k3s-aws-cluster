@@ -55,6 +55,7 @@ locals {
   server_k3s_exec             = ""
   agent_k3s_exec              = ""
   certmanager_version         = var.certmanager_version
+  rancher_chart               = var.rancher_chart
   rancher_version             = var.rancher_version
   letsencrypt_email           = var.letsencrypt_email
   letsencrypt_environment     = var.letsencrypt_environment == "production" ? var.letsencrypt_environment : "staging"
