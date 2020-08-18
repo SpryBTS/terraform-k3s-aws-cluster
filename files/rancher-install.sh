@@ -31,7 +31,7 @@ metadata:
   name: rancher
   namespace: kube-system
 spec:
-  chart: https://releases.rancher.com/server-charts/stable/rancher-${rancher_version}.tgz
+  chart: https://releases.rancher.com/server-charts/${rancher_chart}/rancher-${rancher_version}.tgz
   targetNamespace: cattle-system
   valuesContent: |-
     hostname: ${rancher_hostname}

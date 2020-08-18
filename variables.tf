@@ -6,7 +6,7 @@ variable "rancher_password" {
 
 variable "rancher_version" {
   type        = string
-  default     = "2.3.1"
+  default     = "2.4.5"
   description = "Version of Rancher to install"
 }
 
@@ -30,7 +30,7 @@ variable "ssh_keys" {
 
 variable "rancher_chart" {
   type        = string
-  default     = "rancher-stable/rancher"
+  default     = "stable"
   description = "Helm chart to use for Rancher install"
 }
 
@@ -105,7 +105,7 @@ variable "agent_instance_ssh_user" {
 
 variable "certmanager_version" {
   type        = string
-  default     = "0.9.1"
+  default     = "0.16.1"
   description = "Version of cert-manager to install"
 }
 
@@ -139,7 +139,7 @@ variable "private_subnets" {
 }
 
 variable "install_k3s_version" {
-  default     = "0.9.1"
+  default     = "1.18.8+k3s1"
   type        = string
   description = "Version of K3S to install"
 }
