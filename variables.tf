@@ -192,11 +192,13 @@ variable "db_name" {
 
 variable "db_user" {
   type        = string
+  default     = ""
   description = "Username for RDS database"
 }
 
 variable "db_pass" {
   type        = string
+  default     = ""
   description = "Password for RDS user"
 }
 
