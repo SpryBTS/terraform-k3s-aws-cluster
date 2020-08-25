@@ -2,7 +2,7 @@ terraform {
   required_providers {
     rancher2 = {
       source  = "rancher/rancher2"
-      version = ">= 1.6.0"
+      version = ">= 1.10.0"
     }
     aws = {
       source = "hashicorp/aws"
@@ -17,13 +17,6 @@ terraform {
       source = "hashicorp/template"
     }
   }
-}
-
-
-provider "aws" {}
-
-provider "aws" {
-  alias = "r53"
 }
 
 locals {
