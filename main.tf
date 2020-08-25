@@ -43,8 +43,8 @@ locals {
   deploy_rds                  = var.k3s_datastore_endpoint != "sqlite" ? 1 : 0
   db_engine_version           = var.db_engine_version
   db_instance_type            = var.db_instance_type
-  db_user                     = var.db_user
-  db_pass                     = var.db_pass
+  db_user                     = var.k3s_datastore_endpoint == "sqlite" ? null : var.db_user
+  db_pass                     = var.k3s_datastore_endpoint == "sqlite" ? null : var.db_pass
   db_name                     = var.db_name != null ? var.db_name : var.name
   db_node_count               = var.k3s_datastore_endpoint != "sqlite" ? var.db_node_count : 0
   k3s_storage_cafile          = var.k3s_storage_cafile
