@@ -202,7 +202,7 @@ resource "aws_autoscaling_group" "k3s_server" {
 resource "aws_autoscaling_group" "k3s_agent" {
   name_prefix         = "${local.name}-agent"
   desired_capacity    = local.agent_node_count
-  max_size            = local.agent_node_count
+  max_size            = local.agent_node_count + local.agent_node_count_expansion
   min_size            = local.agent_node_count
   vpc_zone_identifier = local.private_subnets
 

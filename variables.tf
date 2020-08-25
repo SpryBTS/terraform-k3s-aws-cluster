@@ -82,7 +82,13 @@ variable "server_node_count" {
 variable "agent_node_count" {
   type        = number
   default     = 3
-  description = "Number of agent nodes to launch"
+  description = "Number of agent nodes to launch minimum and desired"
+}
+
+variable "agent_node_count_expansion" {
+  type        = number
+  default     = 0
+  description = "Number of agent nodes to add for max scale"
 }
 
 variable "db_node_count" {

@@ -39,6 +39,7 @@ locals {
   private_subnets             = length(var.private_subnets) > 0 ? var.private_subnets : data.aws_subnet_ids.available.ids
   server_node_count           = var.server_node_count
   agent_node_count            = var.agent_node_count
+  agent_node_count_expansion  = var.agent_node_count_expansion
   ssh_keys                    = var.ssh_keys
   deploy_rds                  = var.k3s_datastore_endpoint != "sqlite" ? 1 : 0
   db_engine_version           = var.db_engine_version
