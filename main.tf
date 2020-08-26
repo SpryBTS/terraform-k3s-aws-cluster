@@ -28,6 +28,10 @@ provider "aws" {
   alias = "r53"
 }
 
+provider "rancher2" {
+  alias = "bootstrap"
+}
+
 locals {
   name                        = var.name
   install_k3s_version         = var.install_k3s_version
