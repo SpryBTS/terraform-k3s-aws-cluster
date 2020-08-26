@@ -28,8 +28,12 @@ provider "aws" {
   alias = "r53"
 }
 
+provider "rancher2" {}
+
 provider "rancher2" {
   alias = "bootstrap"
+  api_url   = "https://${local.name}.${local.domain}"
+  bootstrap = true
 }
 
 locals {
