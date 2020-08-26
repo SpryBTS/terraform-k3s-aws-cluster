@@ -19,7 +19,9 @@ terraform {
   }
 }
 
-
+#############################
+### Provider proxy blocks for explicit inheritance
+#############################
 provider "aws" {}
 
 provider "aws" {
@@ -77,12 +79,6 @@ locals {
 resource "random_password" "k3s_token" {
   length  = 30
   special = false
-}
-
-provider "rancher2" {
-  alias     = "bootstrap"
-  api_url   = "https://${local.name}.${local.domain}"
-  bootstrap = true
 }
 
 resource "null_resource" "wait_for_rancher" {
