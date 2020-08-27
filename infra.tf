@@ -163,8 +163,8 @@ resource "aws_launch_template" "k3s_agent" {
   dynamic block_device_mappings {
     for_each = [for volume in var.agent_block_storage: {
       device_name           = lookup( volume, "device_name", "/dev/sda1" )
-      delete_on_termination = lookup( volume, "delete_on_termination", false )
-      encrypted             = lookup( volume, "encrypted", false )
+      delete_on_termination = lookup( volume, "delete_on_termination", null )
+      encrypted             = lookup( volume, "encrypted", null )
       volume_type           = lookup( volume, "volume_type", "gp2" )
       volume_size           = lookup( volume, "volume_size", "50" )
     }]

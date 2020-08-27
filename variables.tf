@@ -301,7 +301,6 @@ variable "rancher2_token_key" {
 variable "server_block_storage" {
   default = {
     "/dev/sda1" = {
-      delete_on_termination = true
       size       = "50"
       encrypted  = true
       type       = "gp2"
@@ -314,7 +313,6 @@ variable "server_block_storage" {
 variable "agent_block_storage" {
   default = {
     "/dev/sda1" = {
-      delete_on_termination = true
       size      = "50"
       encrypted = true
       type      = "gp2"
