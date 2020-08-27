@@ -116,15 +116,7 @@ resource "aws_launch_template" "k3s_server" {
   instance_type = local.server_instance_type
   user_data     = data.template_cloudinit_config.k3s_server.rendered
 
-  block_device_mappings {
-    device_name = "/dev/sda1"
-
-    ebs {
-      encrypted   = true
-      volume_type = "gp2"
-      volume_size = "50"
-    }
-  }
+  block_device_mappings local.server_block_device_mappings
 
   network_interfaces {
     delete_on_termination = true
@@ -150,15 +142,7 @@ resource "aws_launch_template" "k3s_agent" {
   instance_type = local.agent_instance_type
   user_data     = data.template_cloudinit_config.k3s_agent.rendered
 
-  block_device_mappings {
-    device_name = "/dev/sda1"
-
-    ebs {
-      encrypted   = true
-      volume_type = "gp2"
-      volume_size = "50"
-    }
-  }
+  block_device_mappings local.agent_block_device_mappings
 
   network_interfaces {
     delete_on_termination = true

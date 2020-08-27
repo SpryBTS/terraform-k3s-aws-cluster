@@ -297,3 +297,34 @@ variable "rancher2_token_key" {
   type        = string
   description = "Rancher2 API token for authentication"
 }
+
+variable "server_block_device_mappings" {
+  default     = [
+    {
+      device_name = "/dev/sda1"
+
+      ebs {
+        encrypted   = true
+        volume_type = "gp2"
+        volume_size = "50"
+      }
+    }
+  ]
+  type = list(object)
+  description = "Block devices attached to server instances"
+}
+
+variable "agent_block_device_mappings" {
+  default     = [
+    {
+      device_name = "/dev/sda1"
+      ebs {
+        encrypted   = true
+        volume_type = "gp2"
+        volume_size = "50"
+      }
+    }
+  ]
+  type = list(object)
+  description = "Block devices attached to server instances"
+}
