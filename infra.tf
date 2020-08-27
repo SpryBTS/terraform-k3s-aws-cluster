@@ -116,13 +116,23 @@ resource "aws_launch_template" "k3s_server" {
   instance_type = local.server_instance_type
   user_data     = data.template_cloudinit_config.k3s_server.rendered
 
-  block_device_mappings {
-    device_name = "/dev/sda1"
+  dynamic block_device_mappings {
+    for_each = [for volume in var.server_block_storage: {
+      device_name           = lookup( volume, "device_name", "/dev/sda1" )
+      delete_on_termination = lookup( volume, "delete_on_termination", false )
+      encrypted             = lookup( volume, "encrypted", false )
+      volume_type           = lookup( volume, "volume_type", "gp2" )
+      volume_size           = lookup( volume, "volume_size", "50" )
+    }]
+    content {
+      device_name = block_device_mappings.value.device_name
 
-    ebs {
-      encrypted   = true
-      volume_type = "gp2"
-      volume_size = "50"
+      ebs {
+        encrypted   = block_device_mappings.value.encrypted
+        delete_on_termination = block_device_mappings.value.delete_on_termination
+        volume_type = block_device_mappings.value.volume_type
+        volume_size = block_device_mappings.value.volume_size
+      }
     }
   }
 
@@ -150,13 +160,23 @@ resource "aws_launch_template" "k3s_agent" {
   instance_type = local.agent_instance_type
   user_data     = data.template_cloudinit_config.k3s_agent.rendered
 
-  block_device_mappings {
-    device_name = "/dev/sda1"
+  dynamic block_device_mappings {
+    for_each = [for volume in var.agent_block_storage: {
+      device_name           = lookup( volume, "device_name", "/dev/sda1" )
+      delete_on_termination = lookup( volume, "delete_on_termination", false )
+      encrypted             = lookup( volume, "encrypted", false )
+      volume_type           = lookup( volume, "volume_type", "gp2" )
+      volume_size           = lookup( volume, "volume_size", "50" )
+    }]
+    content {
+      device_name = block_device_mappings.value.device_name
 
-    ebs {
-      encrypted   = true
-      volume_type = "gp2"
-      volume_size = "50"
+      ebs {
+        encrypted   = block_device_mappings.value.encrypted
+        delete_on_termination = block_device_mappings.value.delete_on_termination
+        volume_type = block_device_mappings.value.volume_type
+        volume_size = block_device_mappings.value.volume_size
+      }
     }
   }
 

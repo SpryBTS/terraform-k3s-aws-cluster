@@ -59,7 +59,9 @@ locals {
   k3s_tls_san                 = var.k3s_tls_san != null ? var.k3s_tls_san : "--tls-san ${aws_lb.server-lb.dns_name}"
   k3s_deploy_traefik          = var.k3s_deploy_traefik ? "" : "--no-deploy traefik"
   server_k3s_exec             = ""
+  server_block_storage        = var.server_block_storage
   agent_k3s_exec              = ""
+  agent_block_storage         = var.agent_block_storage
   certmanager_version         = var.certmanager_version
   rancher_chart               = var.rancher_chart
   rancher_version             = var.rancher_version

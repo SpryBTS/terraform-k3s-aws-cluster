@@ -297,3 +297,28 @@ variable "rancher2_token_key" {
   type        = string
   description = "Rancher2 API token for authentication"
 }
+
+variable "server_block_storage" {
+  default = {
+    "/dev/sda1" = {
+      size       = "50"
+      encrypted  = true
+      type       = "gp2"
+    }
+  }
+  type = map
+  description = "Server storage"
+}
+
+variable "agent_block_storage" {
+  default = {
+    "/dev/sda1" = {
+      size      = "50"
+      encrypted = true
+      type      = "gp2"
+    }
+  }
+  type = map
+  description = "Agent storage"
+}
+
