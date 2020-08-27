@@ -77,6 +77,7 @@ locals {
   create_external_nlb         = var.create_external_nlb ? 1 : 0
   registration_command        = var.registration_command
   rancher_password            = var.rancher_password
+  token_update                = var.token_update
 }
 
 resource "random_password" "k3s_token" {
@@ -121,4 +122,5 @@ resource "rancher2_bootstrap" "admin" {
   provider   = rancher2.bootstrap
   password   = local.rancher_password
   depends_on = [null_resource.wait_for_rancher]
+  token_update = local.token_update
 }

@@ -280,6 +280,12 @@ variable "k3s_deploy_traefik" {
   description = "Configures whether to deploy traefik ingress or not"
 }
 
+variable "token_update" {
+  default     = false
+  type        = bool
+  description = "Rancher admin token force refresh"
+}
+
 variable "rancher2_token_key" {
   default     = null
   type        = string
