@@ -77,6 +77,7 @@ locals {
   create_external_nlb         = var.create_external_nlb ? 1 : 0
   registration_command        = var.registration_command
   rancher_password            = var.rancher_password
+  rancher_current_password    = var.rancher_current_password
   token_update                = var.token_update
 }
 
@@ -118,9 +119,10 @@ EOF
 }
 
 resource "rancher2_bootstrap" "admin" {
-  count      = local.install_rancher ? 1 : 0
-  provider   = rancher2.bootstrap
-  password   = local.rancher_password
-  depends_on = [null_resource.wait_for_rancher]
-  token_update = local.token_update
+  count            = local.install_rancher ? 1 : 0
+  provider         = rancher2.bootstrap
+  password         = local.rancher_password
+  current_password = local.rancher_current_password
+  depends_on       = [null_resource.wait_for_rancher]
+  token_update     = local.token_update
 }
