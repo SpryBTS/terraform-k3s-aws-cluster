@@ -4,7 +4,7 @@ variable "rancher_password" {
   description = "Password to set for admin user during bootstrap of Rancher Server"
 }
 
-variable "current_rancher_password" {
+variable "rancher_current_password" {
   type        = string
   default     = ""
   description = "Password used to login as admin user during bootstrap of Rancher Server"
