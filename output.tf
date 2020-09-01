@@ -8,5 +8,5 @@ output "rancher_token" {
 }
 
 output "ingress_dns_name" {
-  value = aws_lb.lb.dns_name
+  value = aws_lb.lb[0].dns_name
 }
