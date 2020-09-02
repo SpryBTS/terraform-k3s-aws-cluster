@@ -51,14 +51,14 @@ resource "aws_lb_listener" "port" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.agent[${each.key}].arn
+    target_group_arn = aws_lb_target_group.agent[each.key].arn
   }
 }
 
 resource "aws_lb_target_group" "agent" {
   for_each = (local.create_external_nlb == 1) ? toset(local.external_ports) : []
 
-  name     = substr("${local.name}-${each.value}-${random_pet.lb.id}", 0, 24)
+  name     = substr("${local.name}-${each.key}-${random_pet.lb.id}", 0, 24)
   port     = each.key
   protocol = "TCP"
 
