@@ -42,7 +42,7 @@ resource "aws_lb" "lb" {
 }
 
 resource "aws_lb_listener" "port" {
-  for_each = (local.create_external_nlb == 1) ? toset(local.external_ports) : 0
+  for_each = (local.create_external_nlb == 1) ? toset(local.external_ports) : {}
 
   load_balancer_arn = aws_lb.lb.0.arn
   port              = each.value
@@ -55,7 +55,7 @@ resource "aws_lb_listener" "port" {
 }
 
 resource "aws_lb_target_group" "agent" {
-  for_each = (local.create_external_nlb == 1) ? toset(local.external_ports) : 0
+  for_each = (local.create_external_nlb == 1) ? toset(local.external_ports) : {}
 
   name     = substr("${local.name}-${each.value}-${random_pet.lb.id}", 0, 24)
   port     = each.value
