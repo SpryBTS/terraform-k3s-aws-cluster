@@ -42,6 +42,8 @@ resource "aws_lb" "lb" {
 }
 
 resource "aws_lb_listener" "port" {
+  depends_on = [ aws_lb_target_group.agent ]
+
   for_each = (local.create_external_nlb == 1) ? toset(local.external_ports) : []
 
   load_balancer_arn = aws_lb.lb.0.arn
