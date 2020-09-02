@@ -252,7 +252,7 @@ variable "create_external_nlb" {
 
 variable "external_ports" {
   default     = [ "80", "443" ]
-  type        = list(string)
+  type        = set(string)
   description = "External ports for load balancer"
 }
 
