@@ -28,7 +28,6 @@ resource "aws_lb_target_group" "server-6443" {
   vpc_id   = data.aws_vpc.default.id
 }
 
-
 resource "aws_lb" "lb" {
   count              = local.create_external_nlb
   name               = substr("${local.name}-ext-${random_pet.lb.id}", 0, 24)
@@ -47,12 +46,12 @@ resource "aws_lb_listener" "port" {
   for_each = (local.create_external_nlb == 1) ? toset(local.external_ports) : []
 
   load_balancer_arn = aws_lb.lb.0.arn
-  port              = each.value
+  port              = each.key
   protocol          = "TCP"
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.agent[each.value].arn
+    target_group_arn = aws_lb_target_group.agent[each.key].arn
   }
 }
 
@@ -60,7 +59,7 @@ resource "aws_lb_target_group" "agent" {
   for_each = (local.create_external_nlb == 1) ? toset(local.external_ports) : []
 
   name     = substr("${local.name}-${each.value}-${random_pet.lb.id}", 0, 24)
-  port     = each.value
+  port     = each.key
   protocol = "TCP"
 
   vpc_id   = data.aws_vpc.default.id
