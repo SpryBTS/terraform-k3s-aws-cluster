@@ -91,6 +91,12 @@ variable "server_notifications_topic_arn" {
   description = "SNS Topic ARN for server autoscale notifications"
 }
 
+variable "server_notifications" {
+  type        = bool
+  default     = false
+  description = "Enable server notifications"
+}
+
 variable "agent_node_count" {
   type        = number
   default     = 3
@@ -107,6 +113,12 @@ variable "agent_notifications_topic_arn" {
   type        = string
   default     = null
   description = "SNS Topic ARN for agent autoscale notifications"
+}
+
+variable "agent_notifications" {
+  type        = bool
+  default     = false
+  description = "Enable agent notifications"
 }
 
 variable "db_node_count" {
