@@ -43,10 +43,10 @@ locals {
   public_subnets              = length(var.public_subnets) > 0 ? var.public_subnets : data.aws_subnet_ids.available.ids
   private_subnets             = length(var.private_subnets) > 0 ? var.private_subnets : data.aws_subnet_ids.available.ids
   server_node_count           = var.server_node_count
-  server_notifications_topic  = var.server_notifications_topic_arn != null ? 1 : 0
+  server_notifications        = var.server_notifications != null ? 1 : 0
   agent_node_count            = var.agent_node_count
   agent_node_count_expansion  = var.agent_node_count_expansion
-  agent_notifications_topic   = var.agent_notifications_topic_arn != null ? 1 : 0
+  agent_notifications         = var.agent_notifications != null ? 1 : 0
   ssh_keys                    = var.ssh_keys
   deploy_rds                  = var.k3s_datastore_endpoint != "sqlite" ? 1 : 0
   db_engine_version           = var.db_engine_version

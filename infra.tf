@@ -208,7 +208,7 @@ resource "aws_autoscaling_group" "k3s_server" {
 }
 
 resource "aws_autoscaling_notification" "server-notifications" {
-  count       = local.server_notifications_topic
+  count       = local.server_notifications
 
   group_names = [
     aws_autoscaling_group.k3s_server.name,
@@ -243,7 +243,7 @@ resource "aws_autoscaling_group" "k3s_agent" {
 }
 
 resource "aws_autoscaling_notification" "agent-notifications" {
-  count       = local.agent_notifications_topic
+  count       = local.agent_notifications
 
   group_names = [
     aws_autoscaling_group.k3s_agent.name,
