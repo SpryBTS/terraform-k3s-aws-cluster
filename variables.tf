@@ -250,6 +250,12 @@ variable "create_external_nlb" {
   description = "Boolean that defines whether or not to create an external load balancer"
 }
 
+variable "external_ports" {
+  default     = [ "80", "443" ]
+  type        = set(string)
+  description = "External ports for load balancer"
+}
+
 variable "k3s_storage_cafile" {
   default     = "/srv/rds-combined-ca-bundle.pem"
   type        = string
