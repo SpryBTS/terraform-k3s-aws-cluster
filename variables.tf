@@ -85,6 +85,12 @@ variable "server_node_count" {
   description = "Number of server nodes to launch"
 }
 
+variable "server_notifications_topic_arn" {
+  type        = string
+  default     = null
+  description = "SNS Topic ARN for server autoscale notifications"
+}
+
 variable "agent_node_count" {
   type        = number
   default     = 3
@@ -95,6 +101,12 @@ variable "agent_node_count_expansion" {
   type        = number
   default     = 0
   description = "Number of agent nodes to add for max scale"
+}
+
+variable "agent_notifications_topic_arn" {
+  type        = string
+  default     = null
+  description = "SNS Topic ARN for agent autoscale notifications"
 }
 
 variable "db_node_count" {

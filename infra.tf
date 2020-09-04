@@ -207,6 +207,23 @@ resource "aws_autoscaling_group" "k3s_server" {
   depends_on = [aws_rds_cluster_instance.k3s]
 }
 
+resource "aws_autoscaling_notification" "server-notifications" {
+  count       = local.server_notifications_topic
+
+  group_names = [
+    aws_autoscaling_group.k3s_server.name,
+  ]
+
+  notifications = [
+    "autoscaling:EC2_INSTANCE_LAUNCH",
+    "autoscaling:EC2_INSTANCE_TERMINATE",
+    "autoscaling:EC2_INSTANCE_LAUNCH_ERROR",
+    "autoscaling:EC2_INSTANCE_TERMINATE_ERROR",
+  ]
+
+  topic_arn = var.server_notifications_topic_arn
+}
+
 resource "aws_autoscaling_group" "k3s_agent" {
   name_prefix         = "${local.name}-agent"
   desired_capacity    = local.agent_node_count
@@ -223,6 +240,23 @@ resource "aws_autoscaling_group" "k3s_agent" {
     id      = aws_launch_template.k3s_agent.id
     version = "$Latest"
   }
+}
+
+resource "aws_autoscaling_notification" "agent-notifications" {
+  count       = local.agent_notifications_topic
+
+  group_names = [
+    aws_autoscaling_group.k3s_agent.name,
+  ]
+
+  notifications = [
+    "autoscaling:EC2_INSTANCE_LAUNCH",
+    "autoscaling:EC2_INSTANCE_TERMINATE",
+    "autoscaling:EC2_INSTANCE_LAUNCH_ERROR",
+    "autoscaling:EC2_INSTANCE_TERMINATE_ERROR",
+  ]
+
+  topic_arn = var.agent_notifications_topic_arn
 }
 
 #############################
