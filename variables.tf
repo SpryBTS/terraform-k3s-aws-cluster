@@ -331,9 +331,7 @@ variable "rancher2_token_key" {
 variable "server_block_storage" {
   default = {
     "/dev/sda1" = {
-      size       = "50"
-      encrypted  = true
-      type       = "gp2"
+      volume_size = "50"
     }
   }
   type = map
@@ -343,9 +341,7 @@ variable "server_block_storage" {
 variable "agent_block_storage" {
   default = {
     "/dev/sda1" = {
-      size      = "50"
-      encrypted = true
-      type      = "gp2"
+      volume_size = "50"
     }
   }
   type = map
