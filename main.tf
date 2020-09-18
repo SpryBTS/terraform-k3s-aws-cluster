@@ -79,7 +79,10 @@ locals {
   install_nginx_ingress       = var.install_nginx_ingress
   ingress_check_path          = var.install_nginx_ingress ? "/healthz" : "/ping"
   create_external_nlb         = var.create_external_nlb ? 1 : 0
+  create_internal_nlb         = var.create_internal_nlb ? 1 : 0
   external_ports              = var.external_ports
+  internal_agent_ports        = var.internal_agent_ports
+  internal_server_ports       = var.internal_server_ports
   registration_command        = var.registration_command
   rancher_password            = var.rancher_password
   rancher_current_password    = var.rancher_current_password
