@@ -13,17 +13,17 @@ resource "aws_lb" "int-lb" {
 }
 
 resource "aws_lb_listener" "server-port" {
-  depends_on = [ aws_lb_target_group.server ]
+  depends_on = [ aws_lb_target_group.server-int ]
 
   for_each = (local.create_internal_nlb == 1) ? local.internal_server_ports : []
 
-  load_balancer_arn = aws_lb.server-lb.arn
+  load_balancer_arn = aws_lb.int-lb.arn
   port              = each.key
   protocol          = "TCP"
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.server[each.key].arn
+    target_group_arn = aws_lb_target_group.server-ext[each.key].arn
   }
 }
 
@@ -32,7 +32,7 @@ resource "aws_lb_listener" "agent-port" {
 
   for_each = (local.create_internal_nlb == 1) ? local.internal_agent_ports : []
 
-  load_balancer_arn = aws_lb.server-lb.arn
+  load_balancer_arn = aws_lb.int-lb.arn
   port              = each.key
   protocol          = "TCP"
 
