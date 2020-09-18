@@ -196,7 +196,7 @@ resource "aws_autoscaling_group" "k3s_server" {
   target_group_arns = [
     aws_lb_target_group.agent["80"].arn,
     aws_lb_target_group.agent["443"].arn,
-    aws_lb_target_group.server-6443.arn
+    aws_lb_target_group.server["6443"].arn
   ]
 
   launch_template {
