@@ -58,7 +58,7 @@ locals {
   k3s_storage_cafile          = var.k3s_storage_cafile
   k3s_datastore_endpoint      = var.k3s_datastore_endpoint == "sqlite" ? var.k3s_datastore_endpoint : "postgres://${local.db_user}:${local.db_pass}@${aws_rds_cluster.k3s.0.endpoint}/${local.db_name}"
   k3s_disable_agent           = var.k3s_disable_agent ? "--node-taint server=true:NoExecute" : ""
-  k3s_tls_san                 = var.k3s_tls_san != null ? var.k3s_tls_san : "--tls-san ${aws_lb.server-lb.dns_name}"
+  k3s_tls_san                 = var.k3s_tls_san != null ? var.k3s_tls_san : "--tls-san ${aws_lb.int-lb.dns_name}"
   k3s_deploy_traefik          = var.k3s_deploy_traefik ? "" : "--no-deploy traefik"
   server_k3s_exec             = ""
   server_block_storage        = var.server_block_storage
