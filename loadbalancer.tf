@@ -53,7 +53,6 @@ resource "aws_lb_target_group" "server-int" {
 
   health_check {
     interval            = 30
-    timeout             = 6
     protocol            = "TCP"
     healthy_threshold   = 3
     unhealthy_threshold = 3
@@ -75,7 +74,6 @@ resource "aws_lb_target_group" "agent-int" {
 
   health_check {
     interval            = 10
-    timeout             = 6
     protocol            = "TCP"
     healthy_threshold   = 3
     unhealthy_threshold = 3
