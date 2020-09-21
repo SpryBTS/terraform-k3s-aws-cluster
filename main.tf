@@ -58,7 +58,7 @@ locals {
   k3s_storage_cafile          = var.k3s_storage_cafile
   k3s_datastore_endpoint      = var.k3s_datastore_endpoint == "sqlite" ? var.k3s_datastore_endpoint : "postgres://${local.db_user}:${local.db_pass}@${aws_rds_cluster.k3s.0.endpoint}/${local.db_name}"
   k3s_disable_agent           = var.k3s_disable_agent ? "--node-taint server=true:NoExecute" : ""
-  k3s_tls_san                 = var.k3s_tls_san != null ? var.k3s_tls_san : "--tls-san ${aws_lb.server-lb.dns_name}"
+  k3s_tls_san                 = var.k3s_tls_san != null ? var.k3s_tls_san : "--tls-san ${aws_lb.int-lb.dns_name}"
   k3s_deploy_traefik          = var.k3s_deploy_traefik ? "" : "--no-deploy traefik"
   server_k3s_exec             = ""
   server_block_storage        = var.server_block_storage
@@ -79,7 +79,10 @@ locals {
   install_nginx_ingress       = var.install_nginx_ingress
   ingress_check_path          = var.install_nginx_ingress ? "/healthz" : "/ping"
   create_external_nlb         = var.create_external_nlb ? 1 : 0
+  create_internal_nlb         = var.create_internal_nlb ? 1 : 0
   external_ports              = var.external_ports
+  internal_agent_ports        = var.internal_agent_ports
+  internal_server_ports       = var.internal_server_ports
   registration_command        = var.registration_command
   rancher_password            = var.rancher_password
   rancher_current_password    = var.rancher_current_password

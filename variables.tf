@@ -280,6 +280,24 @@ variable "external_ports" {
   description = "External ports for load balancer"
 }
 
+variable "create_internal_nlb" {
+  default     = true
+  type        = bool
+  description = "Boolean that defines whether or not to create an internal load balancer"
+}
+
+variable "internal_server_ports" {
+  default     = [ "6443" ]
+  type        = set(string)
+  description = "Internal server ports for load balancer"
+}
+
+variable "internal_agent_ports" {
+  default     = [ ]
+  type        = set(string)
+  description = "Internal agent ports for load balancer"
+}
+
 variable "k3s_storage_cafile" {
   default     = "/srv/rds-combined-ca-bundle.pem"
   type        = string
