@@ -7,15 +7,19 @@ This module supports creating a k3s cluster with a postgres backend in AWS. It a
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| agent_block_storage | Block Storage for agent nodes | map | `default = { "/dev/sda1" = { volume_size = "50" } }` | no |
 | agent\_image\_id | AMI to use for k3s agent instances | string | `"null"` | no |
 | agent\_instance\_ssh\_user | Username for sshing into instances | string | `"ubuntu"` | no |
 | agent\_instance\_type |  | string | `"m5.large"` | no |
 | agent\_node\_count | Number of agent nodes to launch | number | `"3"` | no |
+| agent\_notifications | Enable agent notifications to SNS arn | bool | `"false"` | no |
+| agent\_notifications\_topic\_arn | Agent ARN for SNS notifications | string | `"null"` | no |
 | aws\_azs | List of AWS Availability Zones in the VPC | list | `"null"` | no |
 | aws\_profile | Name of the AWS Profile to use for authentication | string | `"null"` | no |
 | aws\_region |  | string | `"null"` | no |
 | certmanager\_version | Version of cert-manager to install | string | `"0.9.1"` | no |
 | create\_external\_nlb | Boolean that defines whether or not to create an external load balancer | bool | `"true"` | no |
+| create\_internal\_nlb | Boolean that defines whether or not to create an internal load balancer | bool | `"true"` | no |
 | db\_instance\_type |  | string | `"db.r5.large"` | no |
 | db\_name | Name of database to create in RDS | string | `"null"` | no |
 | db\_node\_count | Number of RDS database instances to launch | number | `"1"` | no |
@@ -24,10 +28,13 @@ This module supports creating a k3s cluster with a postgres backend in AWS. It a
 | domain |  | string | `"eng.rancher.space"` | no |
 | extra\_agent\_security\_groups | Additional security groups to attach to k3s agent instances | list | `[]` | no |
 | extra\_server\_security\_groups | Additional security groups to attach to k3s server instances | list | `[]` | no |
+| external\_ports | External NLB ports | list | `[ "80", "443" ]` | no |
 | install\_certmanager | Boolean that defines whether or not to install Cert-Manager | bool | `"false"` | no |
 | install\_k3s\_version | Version of K3S to install | string | `"0.9.1"` | no |
 | install\_nginx\_ingress | Boolean that defines whether or not to install nginx-ingress | bool | `"false"` | no |
 | install\_rancher | Boolean that defines whether or not to install Rancher | bool | `"false"` | no |
+| internal\_agent\_ports | Internal NLB ports to agents | list | `[ ]` | no |
+| internal\_server\_ports | Internal NLB ports to servers | list | `[ "6443" ]` | no |
 | k3s\_token | Override to set k3s cluster registration secret | string | `"null"` | no |
 | k3s\_deploy\_traefik | Configures whether to deploy traefik ingress or not | bool | `"true"` | no |
 | k3s\_disable\_agent | Whether to run the k3s agent on the same host as the k3s server | bool | `"false"` | no |
@@ -47,10 +54,13 @@ This module supports creating a k3s cluster with a postgres backend in AWS. It a
 | rancher\_password | Password to set for admin user during bootstrap of Rancher Server | string | `""` | no |
 | rancher\_version | Version of Rancher to install | string | `"2.3.1"` | no |
 | registration\_command | Registration command to import cluster into Rancher. Should not be used when installing Rancher in this same cluster | string | `""` | no |
+| server_block_storage | Block Storage for server nodes | map | `default = { "/dev/sda1" = { volume_size = "50" } }` | no |
 | server\_image\_id | AMI to use for k3s server instances | string | `"null"` | no |
 | server\_instance\_ssh\_user | Username for sshing into instances | string | `"ubuntu"` | no |
 | server\_instance\_type |  | string | `"m5.large"` | no |
 | server\_node\_count | Number of server nodes to launch | number | `"1"` | no |
+| server\_notifications | Enable server notifications to SNS arn | bool | `"false"` | no |
+| server\_notifications\_topic\_arn | Server ARN for SNS notifications | string | `"null"` | no |
 | skip\_final\_snapshot | Boolean that defines whether or not the final snapshot should be created on RDS cluster deletion | bool | `"true"` | no |
 | ssh\_keys | SSH keys to inject into Rancher instances | list | `[]` | no |
 | vpc\_id | The vpc id that Rancher should use | string | `"null"` | no |
@@ -62,6 +72,7 @@ This module supports creating a k3s cluster with a postgres backend in AWS. It a
 | rancher\_admin\_password |  |
 | rancher\_token |  |
 | rancher\_url |  |
+| ingress\_dns\_name | |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

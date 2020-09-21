@@ -7,6 +7,11 @@ output "rancher_token" {
   sensitive = true
 }
 
+output "rancher_admin_password" {
+  value     = local.install_rancher ? rancher2_bootstrap.admin.0.password : null
+  sensitive = true
+}
+
 output "ingress_dns_name" {
   value = aws_lb.lb[0].dns_name
 }
