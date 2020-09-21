@@ -193,7 +193,10 @@ resource "aws_autoscaling_group" "k3s_server" {
   min_size            = local.server_node_count
   vpc_zone_identifier = local.private_subnets
 
-  target_group_arns = flatten([aws_lb_target_group.server-ext[*].id,aws_lb_target_group.server-int[*].id])
+  target_group_arns = flatten([
+    values(aws_lb_target_group.server-ext)[*].id
+    ,values(aws_lb_target_group.server-int)[*].id
+  ])
 
   launch_template {
     id      = aws_launch_template.k3s_server.id
@@ -227,7 +230,10 @@ resource "aws_autoscaling_group" "k3s_agent" {
   min_size            = local.agent_node_count
   vpc_zone_identifier = local.private_subnets
 
-  target_group_arns = flatten([aws_lb_target_group.agent[*].id,aws_lb_target_group.agent-int[*].id])
+  target_group_arns = flatten([
+    values(aws_lb_target_group.agent)[*].id
+    ,values(aws_lb_target_group.agent-int)[*].id
+  ])
 
   launch_template {
     id      = aws_launch_template.k3s_agent.id
