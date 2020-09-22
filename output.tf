@@ -15,3 +15,7 @@ output "rancher_admin_password" {
 output "ingress_dns_name" {
   value = aws_lb.lb[0].dns_name
 }
+
+output "internal_dns_name" {
+  value = aws_lb.int-lb.dns_name
+}
