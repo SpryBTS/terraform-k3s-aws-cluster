@@ -19,3 +19,7 @@ output "ingress_dns_name" {
 output "internal_dns_name" {
   value = aws_lb.int-lb.dns_name
 }
+
+output "internal_zone_id" {
+  value = aws_lb.int-lb.zone_id
+}
